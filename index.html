@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sahil Wadhwani — VFX, Animation & AI Producer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:opsz,wght@9..144,400..900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --base:#0b1015;        /* deep cool charcoal */
+    --base-2:#0f161e;      /* section alt */
+    --panel:#151e28;       /* elevated surface */
+    --line:#26323e;        /* hairlines */
+    --ink:#f1ede4;         /* warm paper white */
+    --ink-dim:#9aa6b2;     /* muted */
+    --ink-faint:#5f6b77;
+    --amber:#e7b15a;       /* projector warmth — single accent */
+    --amber-deep:#c9903a;
+    --teal:#57b9ac;        /* used sparingly for "live" */
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;background:var(--base);color:var(--ink);
+    font-family:"Inter",system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.6;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:"Fraunces",serif;line-height:1.04;margin:0;font-weight:600;letter-spacing:-.012em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+  ::selection{background:var(--amber);color:#12100b}
+
+  /* ---------- nav ---------- */
+  nav{
+    position:sticky;top:0;z-index:50;
+    backdrop-filter:blur(12px);
+    background:linear-gradient(to bottom,rgba(11,16,21,.92),rgba(11,16,21,.72));
+    border-bottom:1px solid var(--line);
+  }
+  .nav-in{display:flex;align-items:center;justify-content:space-between;height:64px}
+  .logo{display:flex;align-items:center;gap:11px;font-family:"Fraunces";font-weight:800;font-size:16px;letter-spacing:-.01em}
+  .logo .mark{
+    width:30px;height:30px;border-radius:7px;display:grid;place-items:center;
+    background:var(--amber);color:#12100b;font-weight:800;font-size:14px;
+  }
+  .nav-links{display:flex;gap:30px;align-items:center;font-size:14.5px;color:var(--ink-dim)}
+  .nav-links a{transition:color .2s}
+  .nav-links a:hover{color:var(--ink)}
+  .nav-cta{
+    border:1px solid var(--line);border-radius:100px;padding:9px 18px;
+    color:var(--ink);font-weight:500;font-size:14px;transition:border-color .2s,background .2s;
+  }
+  .nav-cta:hover{border-color:var(--amber);background:rgba(231,177,90,.08)}
+  @media(max-width:820px){.nav-links a:not(.nav-cta){display:none}}
+
+  /* ---------- hero ---------- */
+  .hero{padding:88px 0 40px;position:relative}
+  .status{
+    display:inline-flex;align-items:center;gap:9px;font-size:13.5px;color:var(--ink-dim);
+    border:1px solid var(--line);border-radius:100px;padding:7px 15px 7px 12px;margin-bottom:30px;
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--teal);box-shadow:0 0 0 0 rgba(87,185,172,.6);animation:pulse 2.4s infinite}
+  @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(87,185,172,.55)}70%{box-shadow:0 0 0 9px rgba(87,185,172,0)}100%{box-shadow:0 0 0 0 rgba(87,185,172,0)}}
+  .hero h1{font-size:clamp(38px,7vw,80px);max-width:16ch}
+  .hero h1 .grade{color:var(--amber)}
+  .hero .lede{font-size:clamp(17px,2.1vw,21px);color:var(--ink-dim);max-width:56ch;margin:26px 0 0;line-height:1.5}
+  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:36px}
+  .btn{
+    display:inline-flex;align-items:center;gap:10px;border-radius:100px;padding:14px 26px;
+    font-size:15.5px;font-weight:600;transition:transform .15s,background .2s,border-color .2s;
+  }
+  .btn-primary{background:var(--amber);color:#12100b}
+  .btn-primary:hover{background:#f0bd6b;transform:translateY(-1px)}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink)}
+  .btn-ghost:hover{border-color:var(--ink-dim);transform:translateY(-1px)}
+  .role-line{margin-top:14px;font-size:15px;color:var(--ink-faint);font-weight:500}
+
+  /* ---------- clock strip ---------- */
+  .clocks{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);
+    border:1px solid var(--line);border-radius:14px;overflow:hidden;margin-top:52px;
+  }
+  .clock{background:var(--base-2);padding:18px 20px}
+  .clock .city{font-size:12.5px;color:var(--ink-faint);letter-spacing:.04em;margin-bottom:6px;text-transform:uppercase}
+  .clock .time{font-family:"Fraunces";font-weight:700;font-size:24px;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .clock .meta{font-size:12px;color:var(--ink-dim);margin-top:2px}
+  @media(max-width:680px){.clocks{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---------- section frame ---------- */
+  section{padding:96px 0}
+  .sec-alt{background:var(--base-2)}
+  .sec-head{max-width:60ch;margin-bottom:44px}
+  .kicker{font-size:13.5px;color:var(--amber);font-weight:600;margin-bottom:16px}
+  .sec-head h2{font-size:clamp(28px,4vw,44px)}
+  .sec-head p{color:var(--ink-dim);font-size:17px;margin:16px 0 0;max-width:52ch}
+
+  /* ---------- poster wall ---------- */
+  .wall{padding:70px 0 90px;position:relative}
+  .wall-head{max-width:var(--maxw);margin:0 auto 36px;padding:0 28px}
+  .wall-head h2{font-size:clamp(26px,4vw,40px)}
+  .wall-head p{color:var(--ink-dim);margin:14px 0 0;max-width:50ch}
+  .marquee{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask-image:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+  .track{display:flex;gap:20px;width:max-content;padding:14px 0}
+  .track.r1{animation:scrollL 62s linear infinite}
+  .track.r2{animation:scrollR 74s linear infinite;margin-top:6px}
+  .marquee:hover .track{animation-play-state:paused}
+  @keyframes scrollL{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  @keyframes scrollR{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+
+  .poster{
+    display:block;position:relative;width:186px;height:270px;flex:0 0 auto;border-radius:11px;overflow:hidden;
+    border:1px solid rgba(255,255,255,.07);cursor:pointer;text-decoration:none;
+    transition:transform .35s cubic-bezier(.2,.7,.2,1),box-shadow .35s,border-color .35s;
+    transform-style:preserve-3d;
+  }
+  .poster::after{content:"";position:absolute;inset:0;background:radial-gradient(120% 80% at 50% 0%,transparent 40%,rgba(0,0,0,.55) 100%);pointer-events:none}
+  .poster::before{content:"";position:absolute;inset:0;opacity:.25;mix-blend-mode:overlay;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+  .poster:hover{transform:translateY(-10px) rotateX(6deg) rotateY(-4deg) scale(1.04);box-shadow:0 26px 50px -18px rgba(0,0,0,.75);border-color:rgba(231,177,90,.5)}
+  .poster .p-body{position:relative;z-index:2;height:100%;padding:16px;display:flex;flex-direction:column;justify-content:space-between}
+  .poster .p-year{font-size:12px;font-weight:600;color:rgba(255,255,255,.72);letter-spacing:.03em}
+  .poster .p-title{font-family:"Anton",sans-serif;text-transform:uppercase;line-height:.92;font-size:27px;letter-spacing:.005em;color:#fff;text-shadow:0 2px 14px rgba(0,0,0,.5)}
+  .poster .p-studio{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.62);margin-top:9px;font-weight:600}
+  .poster .p-rule{width:26px;height:2px;background:var(--amber);margin-top:10px;border-radius:2px}
+  .poster .p-imdb{position:absolute;top:12px;right:12px;z-index:3;font-size:10px;font-weight:700;letter-spacing:.1em;color:#12100b;background:var(--amber);padding:4px 7px;border-radius:5px;opacity:0;transform:translateY(-4px);transition:.25s}
+  .poster:hover .p-imdb{opacity:1;transform:translateY(0)}
+
+  /* ---------- capabilities ---------- */
+  .caps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .cap{border:1px solid var(--line);border-radius:16px;padding:30px 26px;background:linear-gradient(180deg,var(--panel),rgba(21,30,40,.4))}
+  .cap .n{font-family:"Fraunces";font-weight:800;font-size:15px;color:var(--amber);margin-bottom:18px}
+  .cap h3{font-size:20px;margin-bottom:12px}
+  .cap p{color:var(--ink-dim);font-size:15px;margin:0}
+  @media(max-width:820px){.caps{grid-template-columns:1fr}}
+
+  /* ---------- work / filter ---------- */
+  .filters{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:34px}
+  .chip{border:1px solid var(--line);background:transparent;color:var(--ink-dim);border-radius:100px;padding:9px 18px;font-size:14px;font-family:inherit;cursor:pointer;transition:.2s;font-weight:500}
+  .chip:hover{color:var(--ink);border-color:var(--ink-faint)}
+  .chip.active{background:var(--ink);color:var(--base);border-color:var(--ink)}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+  .work{border:1px solid var(--line);border-radius:14px;padding:22px;background:var(--base);transition:transform .2s,border-color .2s;display:flex;flex-direction:column;gap:6px}
+  a.work{cursor:pointer}
+  .work:hover{transform:translateY(-3px);border-color:var(--amber)}
+  .work .wt{font-family:"Fraunces";font-weight:700;font-size:18px}
+  .work .wm{font-size:13.5px;color:var(--ink-faint)}
+  .work .wtag{font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--amber);font-weight:600;margin-top:4px}
+  .work .go{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-faint);margin-top:6px;opacity:0;transition:.2s}
+  a.work:hover .go{opacity:1;color:var(--amber)}
+  .work.hide{display:none}
+  @media(max-width:820px){.grid{grid-template-columns:repeat(2,1fr)}}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+
+  /* ---------- numbers ---------- */
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:16px;overflow:hidden}
+  .stat{background:var(--base-2);padding:38px 28px}
+  .stat .num{font-family:"Fraunces";font-weight:800;font-size:clamp(38px,5vw,54px);letter-spacing:-.03em;line-height:1}
+  .stat .num .plus{color:var(--amber)}
+  .stat .lbl{color:var(--ink-dim);font-size:14.5px;margin-top:12px;max-width:20ch}
+  @media(max-width:820px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+  /* ---------- experience ---------- */
+  .xp{display:flex;flex-direction:column}
+  .xp-row{display:grid;grid-template-columns:210px 1fr;gap:30px;padding:26px 0;border-top:1px solid var(--line)}
+  .xp-row:last-child{border-bottom:1px solid var(--line)}
+  .xp-when{color:var(--ink-faint);font-size:14px;font-weight:500}
+  .xp-co{font-family:"Fraunces";font-weight:700;font-size:21px;margin-bottom:4px}
+  .xp-role{color:var(--amber);font-size:14.5px;font-weight:600;margin-bottom:10px}
+  .xp-desc{color:var(--ink-dim);font-size:15px;max-width:60ch}
+  @media(max-width:680px){.xp-row{grid-template-columns:1fr;gap:8px}}
+
+  /* ---------- AI tools ---------- */
+  .tools{display:flex;flex-wrap:wrap;gap:11px;margin-top:8px}
+  .tool{border:1px solid var(--line);border-radius:9px;padding:10px 16px;font-size:14px;color:var(--ink);background:var(--base);transition:.2s}
+  .tool:hover{border-color:var(--amber);color:var(--amber)}
+
+  /* ---------- contact ---------- */
+  .contact{background:var(--base-2)}
+  .contact h2{font-size:clamp(30px,5vw,52px);max-width:16ch}
+  .contact .sub{color:var(--ink-dim);font-size:18px;margin:20px 0 40px;max-width:48ch}
+  .cgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:640px}
+  .ccard{border:1px solid var(--line);border-radius:14px;padding:24px;background:var(--base);transition:.2s;display:flex;flex-direction:column;gap:5px}
+  .ccard:hover{border-color:var(--amber);transform:translateY(-3px)}
+  .ccard .cl{font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-faint)}
+  .ccard .cv{font-family:"Fraunces";font-weight:700;font-size:19px;word-break:break-word}
+  @media(max-width:560px){.cgrid{grid-template-columns:1fr}}
+
+  footer{border-top:1px solid var(--line);padding:32px 0;color:var(--ink-faint);font-size:14px}
+  .foot-in{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px}
+
+  /* ---------- VFX ambient layers ---------- */
+  #fx-canvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+  header,.wall,section,footer{position:relative;z-index:1}
+  .grain{position:fixed;inset:-20%;z-index:2;pointer-events:none;opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3C/svg%3E");
+    animation:grain 1.1s steps(3) infinite}
+  @keyframes grain{0%{transform:translate(0,0)}33%{transform:translate(-2%,1.5%)}66%{transform:translate(1.5%,-2%)}100%{transform:translate(-1%,2%)}}
+  .hero::before{content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+    background:radial-gradient(440px circle at var(--mx,50%) var(--my,26%),rgba(231,177,90,.11),transparent 62%)}
+  .hero .wrap{position:relative;z-index:1}
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(prefers-reduced-motion:reduce){
+    .track{animation:none !important}
+    .dot{animation:none}
+    html{scroll-behavior:auto}
+    .poster:hover{transform:translateY(-6px)}
+    .grain{animation:none;opacity:.035}
+    .hero::before{display:none}
+    .reveal{opacity:1 !important;transform:none !important}
+  }
+</style>
+</head>
+<body>
+
+<canvas id="fx-canvas" aria-hidden="true"></canvas>
+<div class="grain" aria-hidden="true"></div>
+
+<nav>
+  <div class="wrap nav-in">
+    <a href="#top" class="logo"><span class="mark">SW</span> Sahil Wadhwani</a>
+    <div class="nav-links">
+      <a href="#work">Work</a>
+      <a href="#ai">AI Production</a>
+      <a href="#experience">Experience</a>
+      <a href="#contact" class="nav-cta">Get in touch</a>
+    </div>
+  </div>
+</nav>
+
+<header id="top" class="hero">
+  <div class="wrap">
+    <div class="status"><span class="dot"></span> Available for freelance projects — working across every timezone</div>
+    <h1>Producing <span class="grade">film, animation & AI</span> for global audiences.</h1>
+    <p class="lede">I run high-budget productions end to end — from bid and resourcing through pipeline and final delivery. Eleven years across studios like MPC, DNEG and Technicolor, now producing AI-native content at scale. Wherever your studio sits, I keep the show on schedule.</p>
+    <div class="role-line">VFX · Animation · AI Producer — Mumbai, working US, Canada & European hours</div>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Book a call</a>
+      <a href="mailto:sahil.wadhwani1993@gmail.com" class="btn btn-ghost">Email me</a>
+    </div>
+
+    <div class="clocks" id="clocks">
+      <div class="clock" data-tz="America/Los_Angeles"><div class="city">Los Angeles</div><div class="time">--:--</div><div class="meta"></div></div>
+      <div class="clock" data-tz="America/New_York"><div class="city">New York</div><div class="time">--:--</div><div class="meta"></div></div>
+      <div class="clock" data-tz="Europe/London"><div class="city">London</div><div class="time">--:--</div><div class="meta"></div></div>
+      <div class="clock" data-tz="Asia/Kolkata"><div class="city">Mumbai</div><div class="time">--:--</div><div class="meta"></div></div>
+    </div>
+  </div>
+</header>
+
+<!-- POSTER WALL -->
+<div class="wall" id="work">
+  <div class="wall-head">
+    <h2>A decade on the shows you know</h2>
+    <p>Selected feature and animated titles I've helped deliver. Hover to pause — click any title to open it on IMDb.</p>
+  </div>
+  <div class="marquee">
+    <div class="track r1" id="row1"></div>
+  </div>
+  <div class="marquee">
+    <div class="track r2" id="row2"></div>
+  </div>
+</div>
+
+<!-- CAPABILITIES -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">What I bring to a production</div>
+      <h2>A producer who de-risks the hard part: delivery.</h2>
+      <p>Studios and production companies bring me on to run the show so the creative can breathe — schedules, budgets, client comms and delivery, held together under pressure.</p>
+    </div>
+    <div class="caps">
+      <div class="cap">
+        <div class="n">01</div>
+        <h3>End-to-end delivery</h3>
+        <p>From bidding and test projects to final grade — I own scheduling, budgets and client communication across multiple sites and keep the show landing on time.</p>
+      </div>
+      <div class="cap">
+        <div class="n">02</div>
+        <h3>Teams & vendors, run on schedule</h3>
+        <p>Leading crews of up to 200+ artists on a show, and managing vendor and freelancer networks to absorb overflow without dropping quality or slipping dates.</p>
+      </div>
+      <div class="cap">
+        <div class="n">03</div>
+        <h3>AI-native content</h3>
+        <p>Brought in to stand up AI-native production end to end — I built the pipeline and a 100+ person crew, scripting to color, and produced the content through delivery.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORK FILTER -->
+<section class="sec-alt">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Selected work</div>
+      <h2>Credits across film, animation, AI and advertising.</h2>
+    </div>
+    <div class="filters" id="filters">
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="film">Film</button>
+      <button class="chip" data-f="animation">Animation</button>
+      <button class="chip" data-f="ai">AI</button>
+      <button class="chip" data-f="ad">Advertising</button>
+    </div>
+    <div class="grid" id="workgrid"></div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">By the numbers</div>
+      <h2>Scale I've operated at.</h2>
+    </div>
+    <div class="stats" id="stats">
+      <div class="stat"><div class="num" data-to="11"></div><div class="lbl">years producing across VFX, animation & AI</div></div>
+      <div class="stat"><div class="num" data-to="200"></div><div class="lbl">artists led at peak on a single show</div></div>
+      <div class="stat"><div class="num" data-to="100"></div><div class="lbl">person AI content team built from scratch</div></div>
+      <div class="stat"><div class="num" data-to="5"></div><div class="lbl">award-winning international ad campaigns</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- AI -->
+<section class="sec-alt" id="ai">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">On the frontier</div>
+      <h2>AI production, run like a real studio.</h2>
+      <p>At Mythik I built the tracking framework, the pipeline and the team for high-volume AI content targeting a 2026 app launch — hiring 45 AI artists across scripting, storyboarding, image, video, music, dubbing, editing and grading.</p>
+    </div>
+    <div class="tools">
+      <span class="tool">SORA</span>
+      <span class="tool">Google Veo 3</span>
+      <span class="tool">Kling AI</span>
+      <span class="tool">PixVerse</span>
+      <span class="tool">Nanobanana</span>
+      <span class="tool">Weavy</span>
+      <span class="tool">Custom GPTs</span>
+      <span class="tool">ElevenLabs</span>
+      <span class="tool">Pro Tools</span>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="kicker">Experience</div>
+      <h2>Where I've done the work.</h2>
+    </div>
+    <div class="xp">
+      <div class="xp-row">
+        <div class="xp-when">2023 — 2026</div>
+        <div>
+          <div class="xp-co">Mythik Entertainment</div>
+          <div class="xp-role">Production Manager</div>
+          <div class="xp-desc">Brought in to produce a high-volume AI content slate for a 2026 launch — built the pipeline and tracking framework, hired 45 AI artists, and ran a 100+ member team through delivery.</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">2023 — 2025</div>
+        <div>
+          <div class="xp-co">Assemblage Entertainment</div>
+          <div class="xp-role">Studio Production Manager</div>
+          <div class="xp-desc">Produced and delivered a slate of animated features and series — planning, crewing and client engagement from bid through delivery. Titles: Gabby's Dollhouse: The Movie, Wolf King, Sneaks, Chhaava, Stitch Head, Morphle, Booba.</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">2016 — 2023</div>
+        <div>
+          <div class="xp-co">Technicolor India — MPC · Trace · The Mill</div>
+          <div class="xp-role">Production Manager → Line Producer → Producer → Coordinator</div>
+          <div class="xp-desc">Seven years across film and advertising units. Ran international, high-budget ad campaigns and managed 200+ artists on features across LA, Paris, NYC, London and Shanghai. Titles include Justice League, Roma, Dumbo, Godzilla, Shazam, X-Men: Dark Phoenix.</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">2019 — 2020</div>
+        <div>
+          <div class="xp-co">DNEG</div>
+          <div class="xp-role">Line Producer — Build / Assets</div>
+          <div class="xp-desc">Scheduling and delivery across modelling, texturing, rigging, lookdev and groom for the Mumbai and Chennai sites. Titles: Wonder Woman 1984, Jungle Cruise, No Time to Die.</div>
+        </div>
+      </div>
+      <div class="xp-row">
+        <div class="xp-when">2015 — 2016</div>
+        <div>
+          <div class="xp-co">Red Chillies VFX</div>
+          <div class="xp-role">Production Coordinator</div>
+          <div class="xp-desc">Led a team of 42 artists and 10 vendor partners across 3D and 2D, keeping assets and shots flowing to comp. Titles: Fan, Raees, League of Gods.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="kicker">Let's talk</div>
+    <h2>Ready to produce your next one.</h2>
+    <p class="sub">Whether it's a feature, a series, an ad campaign or an AI-native content slate — tell me the scope and the deadline, and I'll tell you how I'd land it.</p>
+    <div class="cgrid">
+      <a class="ccard" href="mailto:sahil.wadhwani1993@gmail.com">
+        <span class="cl">Email</span>
+        <span class="cv">sahil.wadhwani1993@gmail.com</span>
+      </a>
+      <a class="ccard" href="tel:+919820532904">
+        <span class="cl">Call / WhatsApp</span>
+        <span class="cv">+91 98205 32904</span>
+      </a>
+      <a class="ccard" href="https://www.imdb.com/name/nm8080610/" target="_blank" rel="noopener">
+        <span class="cl">IMDb</span>
+        <span class="cv">View full credits</span>
+      </a>
+      <a class="ccard" href="https://in.linkedin.com/in/sahilwadhwani" target="_blank" rel="noopener">
+        <span class="cl">LinkedIn</span>
+        <span class="cv">Connect with me</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap foot-in">
+    <span>© 2026 Sahil Wadhwani — VFX, Animation & AI Producer</span>
+    <span>Available worldwide · Every timezone</span>
+  </div>
+</footer>
+
+<script>
+  /* ---- IMDb direct title links (verified IDs) ---- */
+  const imdbUrl = id => 'https://www.imdb.com/title/' + id + '/';
+
+  /* ---- poster wall data ---- */
+  const posters = [
+    {t:"No Time to Die", y:2021, s:"DNEG", id:"tt2382320", g:["#1a2a3a","#0a1420"]},
+    {t:"Justice League", y:2017, s:"MPC", id:"tt0974015", g:["#22303f","#0c1620"]},
+    {t:"Wonder Woman 1984", y:2020, s:"DNEG", id:"tt7126948", g:["#3a2416","#160c08"]},
+    {t:"Roma", y:2018, s:"MPC", id:"tt6155172", g:["#242a2e","#0c1012"]},
+    {t:"Dumbo", y:2019, s:"MPC", id:"tt3861390", g:["#2a2033","#100a16"]},
+    {t:"Jungle Cruise", y:2021, s:"DNEG", id:"tt0870154", g:["#1e2e22","#0a140e"]},
+    {t:"Godzilla", y:2019, s:"MPC", id:"tt3741700", g:["#202a2e","#0a1214"]},
+    {t:"Shazam!", y:2019, s:"MPC", id:"tt0448115", g:["#33260f","#141005"]},
+    {t:"X-Men: Dark Phoenix", y:2019, s:"MPC", id:"tt6565702", g:["#301a1e","#14080a"]},
+    {t:"Maleficent 2", y:2019, s:"MPC", id:"tt4777008", g:["#241830","#0e0816"]},
+    {t:"Kingsman", y:2017, s:"MPC", id:"tt4649466", g:["#2a2016","#120c08"]},
+    {t:"Alpha", y:2018, s:"MPC", id:"tt4244998", g:["#26303a","#0c141c"]},
+    {t:"The Turning", y:2020, s:"MPC", id:"tt7510346", g:["#1c242c","#080c10"]},
+    {t:"Gabby's Dollhouse", y:2025, s:"Assemblage", id:"tt32214143", g:["#33222e","#150a12"]},
+    {t:"Wolf King", y:2025, s:"Assemblage", id:"tt20917940", g:["#222c2a","#0a1210"]},
+    {t:"Chhaava", y:2025, s:"Assemblage", id:"tt27922706", g:["#2e2214","#140e06"]},
+    {t:"Stitch Head", y:2025, s:"Assemblage", id:"tt26720001", g:["#1e2632","#0a1018"]},
+    {t:"Sneaks", y:2025, s:"Assemblage", id:"tt9254940", g:["#2a2634","#100e18"]},
+  ];
+  function posterEl(p){
+    return `<a class="poster" href="${imdbUrl(p.id)}" target="_blank" rel="noopener" style="background:linear-gradient(155deg,${p.g[0]},${p.g[1]})" aria-label="${p.t}, ${p.y} — view on IMDb">
+      <span class="p-imdb">IMDb ↗</span>
+      <div class="p-body">
+        <div class="p-year">${p.y}</div>
+        <div>
+          <div class="p-title">${p.t}</div>
+          <div class="p-rule"></div>
+          <div class="p-studio">${p.s}</div>
+        </div>
+      </div>
+    </a>`;
+  }
+  const half = posters.slice(0,9), otherHalf = posters.slice(9);
+  // duplicate each row's content for a seamless loop
+  document.getElementById('row1').innerHTML = (half.map(posterEl).join('')).repeat(2);
+  document.getElementById('row2').innerHTML = (otherHalf.map(posterEl).join('')).repeat(2);
+
+  /* ---- selected work grid ---- */
+  const work = [
+    {t:"No Time to Die",y:2021,cat:"film",tag:"Feature — DNEG",id:"tt2382320"},
+    {t:"Wonder Woman 1984",y:2020,cat:"film",tag:"Feature — DNEG",id:"tt7126948"},
+    {t:"Jungle Cruise",y:2021,cat:"film",tag:"Feature — DNEG",id:"tt0870154"},
+    {t:"Justice League",y:2017,cat:"film",tag:"Feature — MPC",id:"tt0974015"},
+    {t:"Roma",y:2018,cat:"film",tag:"Feature — MPC",id:"tt6155172"},
+    {t:"Dumbo",y:2019,cat:"film",tag:"Feature — MPC",id:"tt3861390"},
+    {t:"Godzilla",y:2019,cat:"film",tag:"Feature — MPC",id:"tt3741700"},
+    {t:"X-Men: Dark Phoenix",y:2019,cat:"film",tag:"Feature — MPC",id:"tt6565702"},
+    {t:"Shazam!",y:2019,cat:"film",tag:"Feature — MPC",id:"tt0448115"},
+    {t:"Gabby's Dollhouse: The Movie",y:2025,cat:"animation",tag:"Animation — Assemblage",id:"tt32214143"},
+    {t:"Wolf King",y:2025,cat:"animation",tag:"Animation — Assemblage",id:"tt20917940"},
+    {t:"Sneaks",y:2025,cat:"animation",tag:"Animation — Assemblage",id:"tt9254940"},
+    {t:"Chhaava",y:2025,cat:"animation",tag:"Animation — Assemblage",id:"tt27922706"},
+    {t:"Stitch Head",y:2025,cat:"animation",tag:"Animation — Assemblage",id:"tt26720001"},
+    {t:"Mythik AI Content Pipeline",y:2026,cat:"ai",tag:"AI production — Mythik"},
+    {t:"AI Team & Framework (45 artists)",y:2025,cat:"ai",tag:"AI production — Mythik"},
+    {t:"45+ international campaigns",y:2021,cat:"ad",tag:"Advertising — MPC"},
+    {t:"5 award-winning campaigns",y:2021,cat:"ad",tag:"Advertising — MPC"},
+  ];
+  const grid = document.getElementById('workgrid');
+  grid.innerHTML = work.map(w=>{
+    const inner = `<span class="wt">${w.t}</span><span class="wm">${w.y}</span><span class="wtag">${w.tag}</span>`;
+    if(w.id){
+      return `<a class="work" data-cat="${w.cat}" href="${imdbUrl(w.id)}" target="_blank" rel="noopener" title="View ${w.t} on IMDb">${inner}<span class="go">View on IMDb ↗</span></a>`;
+    }
+    return `<div class="work" data-cat="${w.cat}">${inner}</div>`;
+  }).join('');
+  document.getElementById('filters').addEventListener('click',e=>{
+    if(!e.target.classList.contains('chip'))return;
+    document.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+    e.target.classList.add('active');
+    const f=e.target.dataset.f;
+    document.querySelectorAll('.work').forEach(w=>{
+      w.classList.toggle('hide', f!=='all' && w.dataset.cat!==f);
+    });
+  });
+
+  /* ---- live clocks ---- */
+  function updateClocks(){
+    document.querySelectorAll('.clock').forEach(c=>{
+      const tz=c.dataset.tz;
+      const now=new Date();
+      const time=new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',minute:'2-digit',hour12:false}).format(now);
+      const hr=parseInt(new Intl.DateTimeFormat('en-US',{timeZone:tz,hour:'2-digit',hour12:false}).format(now));
+      c.querySelector('.time').textContent=time;
+      const working = hr>=8 && hr<22;
+      c.querySelector('.meta').textContent = working ? 'Reachable now' : 'Off-hours';
+      c.querySelector('.meta').style.color = working ? 'var(--teal)' : 'var(--ink-faint)';
+    });
+  }
+  updateClocks(); setInterval(updateClocks,15000);
+
+  /* ---- animated counters ---- */
+  const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function animateNum(el){
+    const to=+el.dataset.to;
+    if(reduce){el.innerHTML=to+'<span class="plus">+</span>';return;}
+    let start=null;const dur=1100;
+    function step(ts){
+      if(!start)start=ts;
+      const p=Math.min((ts-start)/dur,1);
+      const val=Math.round((1-Math.pow(1-p,3))*to);
+      el.innerHTML=val+(p===1?'<span class="plus">+</span>':'');
+      if(p<1)requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  const io=new IntersectionObserver((entries)=>{
+    entries.forEach(en=>{if(en.isIntersecting){animateNum(en.target);io.unobserve(en.target);}});
+  },{threshold:.5});
+  document.querySelectorAll('.num').forEach(n=>io.observe(n));
+
+  /* ---- VFX: dust + match-move markers + click bursts ---- */
+  (function(){
+    if(reduce) return;
+    const cv=document.getElementById('fx-canvas'); if(!cv) return;
+    const ctx=cv.getContext('2d'); let W,H,DPR,raf;
+    const COL=[[231,177,90],[87,185,172],[241,237,228]];
+    let dust=[], sparks=[], rings=[], flashes=[], markers=[];
+    const rnd=(a,b)=>a+Math.random()*(b-a);
+    const HOT=[[255,224,155],[231,177,90],[255,255,255],[87,185,172]];
+
+    function mkDust(){
+      const c=COL[Math.random()*COL.length|0];
+      return {x:Math.random()*W,y:Math.random()*H,r:rnd(0.5,2.3)*DPR,
+        vy:-rnd(0.04,0.26)*DPR, vx:rnd(-0.06,0.06)*DPR,
+        a:rnd(0.12,0.55), c, ph:Math.random()*6.28, sp:rnd(0.004,0.02)};
+    }
+    function mkMarker(i){
+      return {x:rnd(0.1,0.9)*W, y:rnd(0.12,0.88)*H,
+        vx:rnd(-0.12,0.12)*DPR, vy:rnd(-0.12,0.12)*DPR,
+        ph:Math.random()*6.28, sp:rnd(0.01,0.028), label:('0'+(i+1)).slice(-2)};
+    }
+    function resize(){
+      DPR=Math.min(window.devicePixelRatio||1,2);
+      W=cv.width=innerWidth*DPR; H=cv.height=innerHeight*DPR;
+      cv.style.width=innerWidth+'px'; cv.style.height=innerHeight+'px';
+      const nd=Math.min(58, Math.round(innerWidth*innerHeight/28000));
+      dust=[]; for(let i=0;i<nd;i++) dust.push(mkDust());
+      const nm=innerWidth<640?3:4;
+      markers=[]; for(let i=0;i<nm;i++) markers.push(mkMarker(i));
+    }
+    function burst(px,py){
+      // muzzle flash
+      flashes.push({x:px,y:py,R:rnd(44,76)*DPR,life:1,decay:0.20});
+      // streaking tracer debris
+      const n=28+(Math.random()*14|0);
+      for(let i=0;i<n;i++){
+        const a=Math.random()*6.283, sp=rnd(5,15)*DPR;
+        const c=HOT[Math.random()<0.55?0:(Math.random()*HOT.length|0)];
+        sparks.push({x:px,y:py,px,py,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp,
+          life:1, decay:rnd(0.018,0.036), w:rnd(1.2,2.8)*DPR, c, streak:true});
+      }
+      // lingering embers / smoke glow
+      const m=6+(Math.random()*5|0);
+      for(let i=0;i<m;i++){
+        const a=Math.random()*6.283, sp=rnd(0.6,2.4)*DPR, c=HOT[Math.random()*2|0];
+        sparks.push({x:px,y:py,px,py,vx:Math.cos(a)*sp,vy:Math.sin(a)*sp-0.3*DPR,
+          life:1, decay:rnd(0.006,0.013), w:rnd(2.5,5)*DPR, c, streak:false});
+      }
+      // double shockwave
+      rings.push({x:px,y:py,r:2*DPR,life:1,c:[255,224,155],sp:11});
+      rings.push({x:px,y:py,r:2*DPR,life:0.8,c:COL[0],sp:7});
+      if(sparks.length>520) sparks.splice(0,sparks.length-520);
+    }
+    function drawMarker(m){
+      const lock=0.5+0.5*Math.sin(m.ph*1.6), sz=14*DPR*(1+0.14*(1-lock)), A=0.22, bl=6*DPR, gap=4*DPR;
+      ctx.strokeStyle=`rgba(231,177,90,${A})`; ctx.lineWidth=1.3*DPR;
+      for(const [cx,cy] of [[-1,-1],[1,-1],[1,1],[-1,1]]){
+        const x=m.x+cx*sz, y=m.y+cy*sz;
+        ctx.beginPath(); ctx.moveTo(x-cx*bl,y); ctx.lineTo(x,y); ctx.lineTo(x,y-cy*bl); ctx.stroke();
+      }
+      ctx.beginPath();
+      ctx.moveTo(m.x-gap-5*DPR,m.y); ctx.lineTo(m.x-gap,m.y);
+      ctx.moveTo(m.x+gap,m.y); ctx.lineTo(m.x+gap+5*DPR,m.y);
+      ctx.moveTo(m.x,m.y-gap-5*DPR); ctx.lineTo(m.x,m.y-gap);
+      ctx.moveTo(m.x,m.y+gap); ctx.lineTo(m.x,m.y+gap+5*DPR);
+      ctx.stroke();
+      ctx.fillStyle=`rgba(231,177,90,${A+0.18*lock})`;
+      ctx.beginPath(); ctx.arc(m.x,m.y,1.4*DPR,0,6.283); ctx.fill();
+      ctx.fillStyle=`rgba(231,177,90,${A*0.85})`;
+      ctx.font=`${8*DPR}px ui-monospace, Menlo, monospace`;
+      ctx.fillText(m.label, m.x+sz+3*DPR, m.y-sz+8*DPR);
+    }
+    function tick(){
+      ctx.clearRect(0,0,W,H);
+      for(const p of dust){
+        p.ph+=p.sp; p.x+=p.vx+Math.sin(p.ph)*0.18*DPR; p.y+=p.vy;
+        if(p.y<-12){p.y=H+12;p.x=Math.random()*W;}
+        const tw=p.a*(0.6+0.4*Math.sin(p.ph*2)), R=p.r*4;
+        const g=ctx.createRadialGradient(p.x,p.y,0,p.x,p.y,R);
+        g.addColorStop(0,`rgba(${p.c[0]},${p.c[1]},${p.c[2]},${tw})`);
+        g.addColorStop(1,`rgba(${p.c[0]},${p.c[1]},${p.c[2]},0)`);
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(p.x,p.y,R,0,6.283); ctx.fill();
+      }
+      for(const m of markers){
+        m.ph+=m.sp; m.x+=m.vx; m.y+=m.vy;
+        if(m.x<0)m.x=W; if(m.x>W)m.x=0; if(m.y<0)m.y=H; if(m.y>H)m.y=0;
+        drawMarker(m);
+      }
+      ctx.globalCompositeOperation='lighter';
+      // muzzle flashes
+      for(let i=flashes.length-1;i>=0;i--){
+        const f=flashes[i]; f.life-=f.decay;
+        if(f.life<=0){flashes.splice(i,1);continue;}
+        const R=f.R*(1.15-0.15*f.life), al=Math.max(0,f.life);
+        const g=ctx.createRadialGradient(f.x,f.y,0,f.x,f.y,R);
+        g.addColorStop(0,`rgba(255,242,214,${0.9*al})`);
+        g.addColorStop(0.4,`rgba(231,177,90,${0.5*al})`);
+        g.addColorStop(1,'rgba(231,177,90,0)');
+        ctx.fillStyle=g; ctx.beginPath(); ctx.arc(f.x,f.y,R,0,6.283); ctx.fill();
+      }
+      // tracer debris + embers
+      for(let i=sparks.length-1;i>=0;i--){
+        const s=sparks[i];
+        s.px=s.x; s.py=s.y;
+        const drag=s.streak?0.90:0.95;
+        s.vx*=drag; s.vy=s.vy*drag+0.05*DPR; s.x+=s.vx; s.y+=s.vy; s.life-=s.decay;
+        if(s.life<=0){sparks.splice(i,1);continue;}
+        const al=Math.max(0,s.life);
+        if(s.streak){
+          ctx.strokeStyle=`rgba(${s.c[0]},${s.c[1]},${s.c[2]},${al})`;
+          ctx.lineWidth=Math.max(0.5,s.w*s.life); ctx.lineCap='round';
+          ctx.beginPath(); ctx.moveTo(s.px,s.py); ctx.lineTo(s.x,s.y); ctx.stroke();
+          const R=s.w*3.2;
+          const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,R);
+          g.addColorStop(0,`rgba(255,246,222,${al})`);
+          g.addColorStop(1,`rgba(${s.c[0]},${s.c[1]},${s.c[2]},0)`);
+          ctx.fillStyle=g; ctx.beginPath(); ctx.arc(s.x,s.y,R,0,6.283); ctx.fill();
+        } else {
+          const R=s.w*(1.4+(1-s.life)*2.4);
+          const g=ctx.createRadialGradient(s.x,s.y,0,s.x,s.y,R);
+          g.addColorStop(0,`rgba(${s.c[0]},${s.c[1]},${s.c[2]},${al*0.5})`);
+          g.addColorStop(1,`rgba(${s.c[0]},${s.c[1]},${s.c[2]},0)`);
+          ctx.fillStyle=g; ctx.beginPath(); ctx.arc(s.x,s.y,R,0,6.283); ctx.fill();
+        }
+      }
+      // shockwave rings
+      for(let i=rings.length-1;i>=0;i--){
+        const r=rings[i]; r.life-=0.05; r.r+=(r.sp||6)*DPR;
+        if(r.life<=0){rings.splice(i,1);continue;}
+        ctx.strokeStyle=`rgba(${r.c[0]},${r.c[1]},${r.c[2]},${r.life*0.55})`;
+        ctx.lineWidth=2*DPR*r.life; ctx.beginPath(); ctx.arc(r.x,r.y,r.r,0,6.283); ctx.stroke();
+      }
+      ctx.globalCompositeOperation='source-over';
+      raf=requestAnimationFrame(tick);
+    }
+    resize(); tick();
+    addEventListener('resize',resize,{passive:true});
+    addEventListener('pointerdown',e=>burst(e.clientX*DPR,e.clientY*DPR),{passive:true});
+    document.addEventListener('visibilitychange',()=>{
+      cancelAnimationFrame(raf);
+      if(!document.hidden) raf=requestAnimationFrame(tick);
+    });
+  })();
+
+  /* ---- VFX: hero cursor glow ---- */
+  (function(){
+    if(reduce) return;
+    const hero=document.getElementById('top'); if(!hero) return;
+    let rx=50,ry=26,tx=50,ty=26,raf2=null;
+    function loop(){
+      rx+=(tx-rx)*0.12; ry+=(ty-ry)*0.12;
+      hero.style.setProperty('--mx',rx.toFixed(1)+'%');
+      hero.style.setProperty('--my',ry.toFixed(1)+'%');
+      raf2=(Math.abs(tx-rx)>0.1||Math.abs(ty-ry)>0.1)?requestAnimationFrame(loop):null;
+    }
+    hero.addEventListener('pointermove',e=>{
+      const r=hero.getBoundingClientRect();
+      tx=((e.clientX-r.left)/r.width)*100; ty=((e.clientY-r.top)/r.height)*100;
+      if(!raf2) raf2=requestAnimationFrame(loop);
+    },{passive:true});
+  })();
+
+  /* ---- VFX: scroll reveals ---- */
+  (function(){
+    if(reduce) return;
+    const els=document.querySelectorAll('.sec-head,.cap,.work,.stat,.xp-row,.tool,.wall-head');
+    els.forEach(el=>el.classList.add('reveal'));
+    const ro=new IntersectionObserver((ents)=>{
+      ents.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target);}});
+    },{threshold:.12,rootMargin:'0px 0px -8% 0px'});
+    els.forEach(el=>ro.observe(el));
+  })();
+</script>
+</body>
+</html>
